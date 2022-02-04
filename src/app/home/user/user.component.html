@@ -1,0 +1,24 @@
+<div class="bgComponent">
+
+    <H1> Bienvenido estas mirando el perfil de : {{login}} </H1>
+
+    <mat-card class="example-card"  >
+        <mat-card-header>
+          <mat-card-title class="Cname">{{userData.login}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{userData.avatar_url}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <span> <b>Name</b> : {{userData.name}}</span> 
+          <br>        
+          <span> <b>Company</b> : {{userData.company}}</span>
+          <br>  
+          <span> <b>Score</b> : {{userData.score}}</span>
+          <br>            
+          <span> <b>Followers</b> : {{userData.followers}}</span>
+          <br>       
+          <span> <b>Repositorio</b> : {{userData.html_url}}</span>
+          <br>   
+        </mat-card-content>
+      </mat-card>
+
+</div>

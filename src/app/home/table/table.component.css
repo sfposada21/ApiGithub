@@ -1,0 +1,80 @@
+.bgComponent {
+    background-color: aquamarine;
+  background-image: url("../../../assets/img/fondo2.png");
+  width: 100%;
+  min-height: 100vh;  
+  font-family: "Jost", sans-serif;
+  padding-bottom: 120px;  
+}
+
+
+h1{
+    padding-top: 20px;
+    color: aliceblue;
+    align-items: center;
+    text-align: center;
+}
+
+.Search{
+    padding: 10px 25px;
+    margin-left: 10px;  
+    margin-right: 10px;
+    font-size: 20px;
+    border: 0;
+    outline: none;
+    background-color: #ffffff;  
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+}
+
+.Cname{
+  align-items: center;
+  text-align: center;
+}
+
+button {
+  padding: 10px 25px;
+  margin-left: 10px;  
+  margin-right: 10px;
+  font-size: 20px;
+  border: 0;
+  outline: none;
+  background-color: #383d38;  
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+}
+
+.botones{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-card {
+  max-width: 200px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.perfil{
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.span{
+  text-decoration: solid;
+}
+
+.grafica{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}

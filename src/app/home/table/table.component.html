@@ -1,0 +1,32 @@
+<div class="bgComponent">
+    
+    <H1>FOLLOWERS RANK</H1>
+     <div class="botones"> 
+         <input [(ngModel)]='textoDeInput' type="text" class="Search" id="Csearch" placeholder="usuario">  
+         <button (click)="SearchUser()">SEARCH</button>
+     </div>
+    
+     <div>
+       <div class="grafica"> 
+        <ngx-charts-bar-vertical-2d
+        [view]="view"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [scheme]="'air'"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [legendTitle]="legendTitle"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)">
+          </ngx-charts-bar-vertical-2d>
+        </div>
+    </div>
+ 
+ 
+ </div>
