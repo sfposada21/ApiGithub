@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { LegendPosition } from '@swimlane/ngx-charts';
+import { timer, interval } from 'rxjs'
 
 import {
   MatSnackBar,
@@ -19,6 +20,7 @@ export class TableComponent implements OnInit {
 
   userData: any  
   listData: any
+  follower: any;
   textoDeInput: any;
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
@@ -33,10 +35,9 @@ export class TableComponent implements OnInit {
   gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Country';
+  xAxisLabel: string = 'People';
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Population';
-  legendTitle: string = 'Years';
+  yAxisLabel: string = 'Followers';
   multi : any
 
   constructor( 
@@ -48,7 +49,6 @@ export class TableComponent implements OnInit {
     }
 
   ngOnInit(): void {    
-    this.GetFollowers()
   }
 
   SearchUser(){
@@ -65,7 +65,8 @@ export class TableComponent implements OnInit {
           this.listData = res.items
           console.log(this.listData)
           this.message = "Buscando";
-          this.openSnackBarSuccesfull();
+          this.openSnackBarSuccesfull();          
+          this.GetFollowers(this.listData)
         },
         (err) => {
           this.message = err.error;
@@ -74,15 +75,7 @@ export class TableComponent implements OnInit {
       );
     }}
   }
-
-  valScore(data: any){
-    if(data ==null || data <=0){
-      localStorage.setItem('role', data);
-    } else {
-      localStorage.setItem('role', data);
-    }
-  }
-
+  
   validatorTexto(){
     let val = true;
     (this.textoDeInput).length < 4 ? val=false : val=true ;
@@ -113,36 +106,37 @@ export class TableComponent implements OnInit {
     });
   }
 
-  GetFollowers(){   
-    this.multi = [
-      {
-      "name": "Germany",
-      "series": [
-        {
-          "name": "2010",
-          "value": 7300000
-        },
-        {
-          "name": "2011",
-          "value": 8940000
-        }
-      ]
-    },
-  
-    {
-      "name": "USA",
-      "series": [
-        {
-          "name": "2010",
-          "value": 7870000
-        },
-        {
-          "name": "2011",
-          "value": 8270000
-        }
-      ]
+  GetFollowers(data: any){   
+    this.follower = []
+    for (let i = 0; i < 10; i++) {
+      this._userService.getPeople(data[i].login).subscribe(
+        (res) => {
+          let fo = res.followers;   
+          this.follower.push(fo)  
+        })         
+      }  
+    console.log("Prueba de seguidores")
+    console.log(this.follower)
+    
+    const contador2 = timer(2000)
+    contador2.subscribe( ()=> { 
+    console.log("PRUEBA")
+    this.rellenar()
+    })  
+
+
+
+   }
+
+  rellenar(){
+    this.multi = []
+    for (let i = 0; i < 10; i++){
+      let objeto1 = {name : "", value :  this.follower[i] }            
+      let objeto2 = {name :  this.listData[i].login, series : [objeto1]}   
+      this.multi.push(objeto2);  
     }
-    ]       
+    console.log("Prueba de tabla")
+    console.log(this.multi)
    }
 
   onSelect(data : any): void {
